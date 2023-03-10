@@ -4,7 +4,8 @@ from sklearn.model_selection import StratifiedKFold
 
 def df_to_dataset(X, Y, nfolds, shuffle=True):
     bags_nm = np.asarray(Y['pid'], dtype=str)
-    bags_label = np.asarray(Y['mor'], dtype='uint8')
+    # bags_label = np.asarray(Y['mor'], dtype='uint8')
+    bags_label = np.asarray(Y['pCR_label'], dtype='float32')
     ins_fea = np.asarray(X)
 
     ins_idx_of_input = {}

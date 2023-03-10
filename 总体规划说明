@@ -1,0 +1,20 @@
+集成机器学习（多个ML模型）：voting(软投票和硬投票)和stacking
+常用的包：sklearn.ensemble.StackingClassifier/VotingClassifier mlxtend
+expriment-case1:
+ph0->svm/rf 完成
+ph3->svm/rf 完成
+t2->svm/rf 完成
+ph0 ph3 t2->majority voting 完成
+
+expriment-case2:
+ph0+ph3+t2（横版）->AMINN 完成
+
+
+expriment-case3:
+ph0+ph3+t2（竖版）->svm/rf
+ph0+ph3+t2（竖版）->majority voting(ph0+ph3+t2)
+ph0+ph3+t2（竖版)->stacking(svm+rf)
+
+
+其他集成方法：1-bagging(RF) 2-boosting(adaboost/xgboost)
+3-voting 4-stacking

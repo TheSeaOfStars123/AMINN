@@ -1,0 +1,60 @@
+case3运行结果记录：
+
+X.shape (292, 300)
+X_std.shape (292, 300)
+X_new.shape after f_classif (292, 60)
+X_fit.shape after RF (292, 93)
+
+直接分类：
+Accuracy: 0.69 (+/- 0.05) [Logistic Regression]
+Accuracy: 0.47 (+/- 0.05) [KNN]
+Accuracy: 0.66 (+/- 0.04) [Naive Bayes]
+Accuracy: 0.71 (+/- 0.06) [Random Forest]
+Accuracy: 0.64 (+/- 0.01) [SVM]
+Accuracy: 0.70 (+/- 0.04) [Ensemble]
+标准化：
+Accuracy: 0.67 (+/- 0.07) [Logistic Regression]
+Accuracy: 0.48 (+/- 0.07) [KNN]
+Accuracy: 0.64 (+/- 0.09) [Naive Bayes]
+Accuracy: 0.71 (+/- 0.06) [Random Forest]
+Accuracy: 0.72 (+/- 0.04) [SVM]
+Accuracy: 0.72 (+/- 0.04) [Ensemble]
+标准化+随机森林-权重1-1-1-hard voting：
+Accuracy: 0.70 (+/- 0.06) [Logistic Regression]
+Accuracy: 0.61 (+/- 0.08) [KNN]
+Accuracy: 0.68 (+/- 0.06) [Naive Bayes]
+Accuracy: 0.75 (+/- 0.05) [Random Forest]
+Accuracy: 0.72 (+/- 0.06) [SVM]
+Accuracy: 0.73 (+/- 0.06) [Ensemble]
+标准化+随机森林-权重1-1-1-soft voting：
+Accuracy: 0.70 (+/- 0.06) [Logistic Regression]
+Accuracy: 0.61 (+/- 0.08) [KNN]
+Accuracy: 0.68 (+/- 0.06) [Naive Bayes]
+Accuracy: 0.75 (+/- 0.05) [Random Forest]
+Accuracy: 0.72 (+/- 0.06) [SVM]
+Accuracy: 0.72 (+/- 0.05) [Ensemble]
+标准化+随机森林-权重1-2-1-hard voting：
+Accuracy: 0.70 (+/- 0.06) [Logistic Regression]
+Accuracy: 0.61 (+/- 0.08) [KNN]
+Accuracy: 0.68 (+/- 0.06) [Naive Bayes]
+Accuracy: 0.75 (+/- 0.05) [Random Forest]
+Accuracy: 0.72 (+/- 0.06) [SVM]
+Accuracy: 0.75 (+/- 0.06) [Ensemble]
+标准化+随机森林-权重1-2-1-hard voting-无概率：
+Accuracy: 0.70 (+/- 0.06) [Logistic Regression]
+Accuracy: 0.61 (+/- 0.08) [KNN]
+Accuracy: 0.68 (+/- 0.06) [Naive Bayes]
+Accuracy: 0.75 (+/- 0.05) [Random Forest]
+Accuracy: 0.72 (+/- 0.06) [SVM]
+Accuracy: 0.75 (+/- 0.06) [Ensemble]
+Accuracy: 0.71 (+/- 0.05) [StackingClassifier]
+标准化+随机森林-权重1-2-1-hard voting-有概率：
+Accuracy: 0.70 (+/- 0.06) [Logistic Regression]
+Accuracy: 0.61 (+/- 0.08) [KNN]
+Accuracy: 0.68 (+/- 0.06) [Naive Bayes]
+Accuracy: 0.75 (+/- 0.05) [Random Forest]
+Accuracy: 0.72 (+/- 0.06) [SVM]
+Accuracy: 0.75 (+/- 0.06) [Ensemble]
+Accuracy: 0.70 (+/- 0.03) [StackingClassifier]
+
+

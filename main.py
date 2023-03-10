@@ -2,6 +2,7 @@ import csv
 import numpy as np
 import pandas as pd
 from keras.optimizers import Adam
+# from tensorflow.keras.optimizers import Adam
 from mil_nets.dataset import df_to_dataset
 from mil_nets.metrics import bag_accuracy, bag_loss, bag_mse
 from mil_nets.utils import convertToBatch, feature_sets
@@ -10,6 +11,7 @@ from network import AMINN
 from network import train_eval, test_eval, predict_eval
 from sklearn.metrics import roc_auc_score
 
+radiomics_path = '../case2/breast_input_ph0_ph3_t2.csv'
 
 def AMINN_experiment(dataset):
     """ train and evaluate AMINN model
@@ -51,10 +53,11 @@ def AMINN_experiment(dataset):
 
 
 if __name__ == "__main__":
+    # ==========================expriment-case2:=================================================
     # read dataframe from csv and convert dataframe to dataset
-    df = pd.read_csv('./data/input.csv')
+    df = pd.read_csv(radiomics_path)
     # normalize=True if applying two-step normalization
-    features, labels = feature_sets(df, normalize=True)
+    features, labels = feature_sets(df, normalize=True, guiyi=True)
     dataset = df_to_dataset(features, labels, nfolds=args.folds, shuffle=True)
 
     acc = np.zeros((args.runs, args.folds), dtype=float)

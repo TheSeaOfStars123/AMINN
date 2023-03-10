@@ -1,0 +1,90 @@
+ph0运行记录：
+X_fit.shape after RF (292, 14)
+第 0 个被选中的特征为: original_shape_Elongation
+第 1 个被选中的特征为: original_shape_Flatness
+第 2 个被选中的特征为: original_shape_LeastAxisLength
+第 3 个被选中的特征为: original_shape_SurfaceVolumeRatio
+第 4 个被选中的特征为: original_firstorder_10Percentile
+第 5 个被选中的特征为: original_firstorder_Kurtosis
+第 6 个被选中的特征为: original_firstorder_Minimum
+第 7 个被选中的特征为: original_glcm_ClusterShade
+第 8 个被选中的特征为: original_glrlm_RunEntropy
+第 9 个被选中的特征为: original_glszm_SizeZoneNonUniformityNormalized
+第 10 个被选中的特征为: original_glszm_SmallAreaEmphasis
+第 11 个被选中的特征为: original_glszm_SmallAreaLowGrayLevelEmphasis
+第 12 个被选中的特征为: original_gldm_DependenceVariance
+第 13 个被选中的特征为: original_gldm_SmallDependenceEmphasis
+
+标准化+卡方+随机森林+random state-1:
+X.shape (292, 100)
+X_std.shape (292, 100)
+X_new.shape after f_classif (292, 60)
+X_fit.shape after RF (292, 14)
+Accuracy: 0.73 (+/- 0.02) [Logistic Regression]
+Accuracy: 0.73 (+/- 0.06) [KNN]
+Accuracy: 0.62 (+/- 0.06) [Naive Bayes]
+Accuracy: 0.72 (+/- 0.03) [Random Forest]
+Accuracy: 0.70 (+/- 0.02) [SVM]
+
+
+ph3运行记录：
+X_fit.shape after RF (292, 18)
+第 0 个被选中的特征为: original_shape_Elongation
+第 1 个被选中的特征为: original_shape_Flatness
+第 2 个被选中的特征为: original_shape_LeastAxisLength
+第 3 个被选中的特征为: original_shape_SurfaceVolumeRatio
+第 4 个被选中的特征为: original_firstorder_Maximum
+第 5 个被选中的特征为: original_firstorder_Range
+第 6 个被选中的特征为: original_firstorder_TotalEnergy
+第 7 个被选中的特征为: original_glcm_Correlation
+第 8 个被选中的特征为: original_glcm_Imc1
+第 9 个被选中的特征为: original_glcm_InverseVariance
+第 10 个被选中的特征为: original_glrlm_LongRunHighGrayLevelEmphasis
+第 11 个被选中的特征为: original_glrlm_RunEntropy
+第 12 个被选中的特征为: original_glszm_GrayLevelNonUniformityNormalized
+第 13 个被选中的特征为: original_glszm_SizeZoneNonUniformityNormalized
+第 14 个被选中的特征为: original_glszm_SmallAreaLowGrayLevelEmphasis
+第 15 个被选中的特征为: original_glszm_ZonePercentage
+第 16 个被选中的特征为: original_gldm_DependenceEntropy
+第 17 个被选中的特征为: original_gldm_SmallDependenceLowGrayLevelEmphasis
+
+标准化+卡方+随机森林+random state-1:
+X.shape (292, 100)
+X_std.shape (292, 100)
+X_fit.shape after RF (292, 18)
+Accuracy: 0.72 (+/- 0.01) [Logistic Regression]
+Accuracy: 0.54 (+/- 0.01) [KNN]
+Accuracy: 0.65 (+/- 0.02) [Naive Bayes]
+Accuracy: 0.76 (+/- 0.01) [Random Forest]
+Accuracy: 0.71 (+/- 0.02) [SVM]
+
+t2运行记录：
+X_fit.shape after RF (292, 14)
+第 0 个被选中的特征为: original_shape_Elongation
+第 1 个被选中的特征为: original_shape_Flatness
+第 2 个被选中的特征为: original_shape_LeastAxisLength
+第 3 个被选中的特征为: original_shape_SurfaceVolumeRatio
+第 4 个被选中的特征为: original_firstorder_Range
+第 5 个被选中的特征为: original_glrlm_RunEntropy
+第 6 个被选中的特征为: original_glrlm_RunVariance
+第 7 个被选中的特征为: original_glrlm_ShortRunLowGrayLevelEmphasis
+第 8 个被选中的特征为: original_glszm_LargeAreaHighGrayLevelEmphasis
+第 9 个被选中的特征为: original_gldm_DependenceNonUniformityNormalized
+第 10 个被选中的特征为: original_gldm_DependenceVariance
+第 11 个被选中的特征为: original_gldm_LargeDependenceHighGrayLevelEmphasis
+第 12 个被选中的特征为: original_gldm_SmallDependenceEmphasis
+第 13 个被选中的特征为: original_gldm_SmallDependenceLowGrayLevelEmphasis
+
+标准化+卡方+随机森林+random state-1:
+X.shape (292, 100)
+X_std.shape (292, 100)
+X_new.shape after f_classif (292, 60)
+X_fit.shape after RF (292, 14)
+Accuracy: 0.71 (+/- 0.04) [Logistic Regression]
+Accuracy: 0.64 (+/- 0.02) [KNN]
+Accuracy: 0.66 (+/- 0.03) [Naive Bayes]
+Accuracy: 0.73 (+/- 0.05) [Random Forest]
+Accuracy: 0.71 (+/- 0.04) [SVM]
+
+
+

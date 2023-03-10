@@ -1,0 +1,6 @@
+recon_coef,do_rate,lr,pooling,epoch,acc,acc_std,auc,auc_std,pretrain,runs
+1.0,0.0,0.0001,ave,100,0.8198529411764706,0.005199314567548125,0.5366300366300366,0.0,,1
+recon_coef,do_rate,lr,pooling,epoch,acc,acc_std,auc,auc_std,pretrain,runs
+1.0,0.0,0.0001,ave,100,0.7054141244126516,0.014129902985573602,0.6869144790532701,0.0,,1
+recon_coef,do_rate,lr,pooling,epoch,acc,acc_std,auc,auc_std,pretrain,runs
+1.0,0.0,0.0001,ave,200,0.6165228978189213,0.02425118372108647,0.6286118748574698,0.0,,1

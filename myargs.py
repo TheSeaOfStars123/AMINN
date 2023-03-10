@@ -1,6 +1,9 @@
 import argparse
 
 parser = argparse.ArgumentParser(description='Train an AMINN model')
+# ------------------------ Extract features ------------------------------- #
+parser.add_argument('--params_file',
+                    default=r'D:/Desktop/BREAST/BREAST/breast-dataset-training-validation/Breast_meta_data/Params.yml')
 
 # ------------------------ Model related parameters ------------------------ #
 parser.add_argument('--pooling', default='ave', type=str,
@@ -18,7 +21,7 @@ parser.add_argument('--recon_coef', default=1.0, type=float,
 parser.add_argument('--fp_coef', default=1.0, type=float,
                     help='weight for bag precition loss')
 # ------------------------ Training parameters ------------------------ #
-parser.add_argument('--epoch', default=100, type=int,
+parser.add_argument('--epoch', default=200, type=int,
                     help='number of epoch to train')
 
 parser.add_argument('--runs', default=1, type=int,
@@ -37,7 +40,7 @@ parser.add_argument('--gpu_ids', default='0', type=str,
                     help='which gpu to use')
 
 parser.add_argument('--out_csv',
-                    default=r'./output.csv',
+                    default=r'./data/output.csv',
                     type=str, help='output file that stores hyper-parameters and performance')
 
 args = parser.parse_args()

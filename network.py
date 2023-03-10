@@ -5,6 +5,7 @@ from keras.regularizers import l2, l1
 from keras.layers import Input, Dense, Dropout, multiply
 from mil_nets.layer import Feature_pooling, Mil_Attention, Last_Sigmoid
 from keras.utils import plot_model
+# from keras.utils.vis_utils import plot_model
 from sklearn.metrics import roc_auc_score
 import tensorflow as tf
 
@@ -90,5 +91,5 @@ class AMINN:
         AE_branch, h = AMINN.build_AE_brach(inputs)
         MINN_branch = AMINN.build_MINN_branch(h)
         model = Model(inputs = [inputs], outputs = [MINN_branch, AE_branch], name= 'AEMIN')
-        plot_model(model, "multi_input_and_output_model.png", show_shapes=True)
+        plot_model(model, "./data/multi_input_and_output_model_zyc.png", show_shapes=True)  # 模型编译后调用plot_model函数就会产生对应的可视化结构
         return model
