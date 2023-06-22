@@ -6,6 +6,7 @@ import csv
 import os
 
 import joblib
+import matplotlib
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -25,8 +26,8 @@ import radiomics.featureextractor as FEE
 import matplotlib.font_manager as fm
 
 MODEL_TYPE = "ph3"
-SAVE_MODEL = True
-SAVE_RESULT = True
+SAVE_MODEL = False
+SAVE_RESULT = False
 
 default_prefix = 'D:/Desktop/BREAST/BREAST/'
 radiomics_path = '../case1/breast_input_'+MODEL_TYPE+'.csv'
@@ -224,11 +225,16 @@ def k_cv_from_file(y_test_paths, probas_paths, labels):
     # https://zhuanlan.zhihu.com/p/403770925
     # 控制字体与字体大小
     plt.rcParams['font.family'] = 'serif'
+    plt.rcParams['mathtext.fontset'] = 'stix'
+    # plt.rcParams["mathtext.fontset"] = "dejavuserif"
     plt.rcParams['font.serif'] = 'Times New Roman'
     plt.rcParams['font.variant'] = 'normal'
     plt.rcParams['font.weight'] = 'normal'
     plt.rcParams['font.stretch'] = 'normal'
     plt.rcParams['font.size'] = 10
+    plt.rcParams['font.sans-serif'] = ['Arial Unicode MS']
+    # plt.rcParams['font.sans-serif'] = [u'SimSun']  # 用来正常显示中文标签
+    # plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
     font0 = {'fontfamily': 'serif',
              'fontname': 'Times New Roman',
              'fontstyle': 'normal',
@@ -236,6 +242,7 @@ def k_cv_from_file(y_test_paths, probas_paths, labels):
              'fontweight': 'bold',
              'fontstretch': 'normal',
              'fontsize': 12}
+    zh_font = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')
     # 固定了图片大小
     fw = 13.5 / 2.54
     fh = 11.5 / 2.54
@@ -244,7 +251,7 @@ def k_cv_from_file(y_test_paths, probas_paths, labels):
     # 最后这一行调整画框的位置，用来消除白边。
     # plt.subplots_adjust(right=0.99, left=0.125, bottom=0.14, top=0.975)
     plt.subplots_adjust(left=0.11, right=0.97, bottom=0.11, top=0.97)
-
+    colors = ['#FF0000', '#00FF00', '#0000FF', 'darkorange']
     i = 0
     for y_test, probas_, label in zip(y_test_list, probas_list, labels):
         # 函数1：根据label和概率值求fpr和tpr，即Receiver operating characteristic(ROC)曲线
@@ -257,7 +264,12 @@ def k_cv_from_file(y_test_paths, probas_paths, labels):
         roc_auc = auc(fpr, tpr)
         aucs.append(roc_auc)
         # 画一条线
-        ax.plot(fpr, tpr, linewidth=1.5, alpha=.9, label='%s (AUC = %0.2f)' % (label, roc_auc))
+        if i == 3:
+            ax.plot(fpr, tpr, linewidth=1.5, color=colors[i], alpha=.9, label='本文方法$\mathrm{ (AUC = 0.89)}$')
+            # ax.plot(fpr, tpr, linewidth=1.5, alpha=.9, label='本文方法$\mathrm{ (AUC = 0.89)}$')
+        else:
+            ax.plot(fpr, tpr, linewidth=1.5, color=colors[i], alpha=.9,  label='$\mathrm{%s (AUC = %0.2f)}$' % (label, roc_auc))
+            # ax.plot(fpr, tpr, linewidth=1.5, alpha=.9, label='$\mathrm{%s (AUC = %0.2f)}$' % (label, roc_auc))
         # 根据probas_得到y_pred
         y_pred = np.argmax(probas_, axis=1)
         # 计算准确率accuracy
@@ -272,7 +284,7 @@ def k_cv_from_file(y_test_paths, probas_paths, labels):
         print('F1-score is %s' % f1_score(y_test, y_pred, average='macro'))
         i += 1
     # 画对角线
-    ax.plot([0, 1], [0, 1], linestyle='--', linewidth=1.5, color='r', label='Chance', alpha=.8)
+    ax.plot([0, 1], [0, 1], linestyle='--', linewidth=1.5, color='r', label='$\mathrm{Chance}$', alpha=.8)
     # 利用网格代替刻度
     ax.xaxis.grid(True, which='major', lw=0.5, linestyle='--', color='0.8', zorder=1)
     ax.yaxis.grid(True, which='major', lw=0.5, linestyle='--', color='0.8', zorder=1)
@@ -285,10 +297,11 @@ def k_cv_from_file(y_test_paths, probas_paths, labels):
     # 图例
     legend = ax.legend(loc="lower right",
                        fancybox=False,
-                       edgecolor='k')
+                       edgecolor='k',prop=zh_font)
     frame = legend.get_frame()
     frame.set_linewidth(0.57)
-    plt.savefig('../case2/pic/roc_test.png', dpi=300)
+    # plt.savefig('../case2/pic/roc_single_sequence.png', dpi=300)
+    plt.savefig('../case2/pic/roc_ensemble_stacking.png', dpi=300)
     plt.show()
 
 
@@ -486,18 +499,35 @@ if __name__ == '__main__':
     # X_test, predict_result, predict_result_proda = predict(ori_dir, 'RF', from_csv_file=False)
 
     # ==========================expriment-case2:=================================================
-    # ---------------------用这个画不同方法的ROC图---------------------------------------------------
+    # # ---------------------用这个画不同方法的ROC图---------------------------------------------------
+    # y_test_paths = [
+    #     '../case1/result/y_test_2th_fold.csv',
+    #     '../case1/result/y_test_1th_fold.csv',
+    #     '../case1/result/y_test_1th_fold.csv',
+    #     '../case1/result/y_test_0th_fold.csv',
+    # ]
+    # probas_paths = [
+    #     '../case1/result/result_SVM_2th_fold_ph3_yproba.csv',
+    #     '../case1/result/result_SVM_1th_fold_ph3_yproba.csv',
+    #     '../case1/result/result_SVM_1th_fold_t2_yproba.csv',
+    #     '../case1/result/result_RF_0th_fold_t2_yproba.csv',
+    # ]
+    # labels = ['S0', 'S3', 'T2', u'多序列']
+    # k_cv_from_file(y_test_paths, probas_paths, labels)
+
     y_test_paths = [
-        '../case1/result/y_test_0th_fold.csv',
-        '../case1/result/y_test_1th_fold.csv',
         '../case1/result/y_test_2th_fold.csv',
+        '../case1/result/y_test_0th_fold.csv',
+        '../case1/result/y_test_2th_fold.csv',
+        '../case1/result/y_test_0th_fold.csv',
     ]
     probas_paths = [
+        '../case1/result/result_RF_2th_fold_ph3_yproba.csv',
+        '../case1/result/result_SVM_0th_fold_t2_yproba.csv',
+        '../case1/result/result_RF_2th_fold_t2_yproba.csv',
         '../case1/result/result_RF_0th_fold_t2_yproba.csv',
-        '../case1/result/result_RF_1th_fold_ph3_yproba.csv',
-        '../case1/result/result_SVM_2th_fold_t2_yproba.csv',
     ]
-    labels = ['RF_t2', 'RF_ph3', 'SVM_t2']
+    labels = ['Hard  Voting', 'Soft  Voting', 'Stacking', '本文方法']
     k_cv_from_file(y_test_paths, probas_paths, labels)
 
     # ==========================expriment-case3:=================================================
